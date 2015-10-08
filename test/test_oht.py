@@ -99,15 +99,5 @@ class Test_OHTRequestsSimple(Test_Answers):
         self.assertTrue(self.checkAnswerStatus(answer))
 
 
-# class Test_OHT(unittest.TestCase):
-#     def setUp(self):
-#         self.obj = OhtApi2.OhtApi("c7t9NbMpG2xK6nvD834B","35aec76f5d9a015304173d1d81891f65", True)
-#
-#     def tearDown(self):
-#         del self.obj
-#
-#     def test_test(self):
-#         self.assertTrue(True, "no ok")
-
 if __name__ == '__main__':
     unittest.main()
