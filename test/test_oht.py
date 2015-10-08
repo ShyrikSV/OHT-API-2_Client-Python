@@ -54,7 +54,7 @@ class Test_JsonToObject(unittest.TestCase):
 
 class Test_Answers(unittest.TestCase):
     def setUp(self):
-        self.obj = OhtApi2.OhtApi("c7t9NbMpG2xK6nvD834B","35aec76f5d9a015304173d1d81891f65", True)
+        self.obj = OhtApi2.OhtApi("secret","secret", True)
         self.ohtTupleType = "oht_response"
         self.listType = type([]).__name__
 
