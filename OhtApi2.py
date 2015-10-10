@@ -148,7 +148,7 @@ class OhtApi:
         Create a new file entity from supported formats.
         After the resource entity is created, it can be used on job requests such as translation, proofreading, etc.
         More info: https://www.onehourtranslation.com/translation/api-documentation-v2/content-formats
-        :param upload: {String} -> Path to file, witch content will be upload (submitted via multipart/form-data request)
+        :param upload: {String} -> (optional, see file_content) Path to file, witch content will be upload (submitted via multipart/form-data request)
         :param file_name: {String} -> (optional) Replace the original file's name on One Hour Translation
         :param file_mime: {String} -> (optional) Replace the default mime value for the file
         :param file_content: {String} -> Content of the new file, works only with "file_name" not empty. If used, actual upload is skipped.
@@ -175,7 +175,7 @@ class OhtApi:
     def get_resource(self, resource_uuid, project_id=-1, fetch=""):
         """
         Provides information regarding a specific resource
-        :param resource_uuid:
+        :param resource_uuid: {String}
         :param project_id: {Integer} -> (optional) Project ID, needed when requesting a resource that was uploaded by another user - e.g. as a project’s translation
         :param fetch: {String} -> (optional) possible values: false - (default) do not fetch content; base64 - fetch content, base64 encoded
         :return: namedtuple with fields:
@@ -232,7 +232,7 @@ class OhtApi:
                 return path_to_save
             return ""
 
-    def quote(self, resources, wordcount, source_lang, target_lang, service="", expertise="", proofreading="", currency=""):
+    def quote(self, resources, source_lang, target_lang, wordcount=0, service="", expertise="", proofreading="", currency=""):
         """
         Get the summary of an order
         :param resources: {List} -> list of resource_uuid
@@ -430,7 +430,7 @@ class OhtApi:
                 code: {Integer} -> request status code, 0 for OK.  More info: https://www.onehourtranslation.com/translation/api-documentation-v2/general-instructions#status-and-error-codes
                 msg: {String} -> request status message, "ok" for OK
             results: namedtuple with fields:
-                project_id: {Integer} -> the unique id of the requested project
+                project_id: {String} -> the unique id of the requested project
                 project_type: {String} -> Translation | Expert Translation | Proofreading | Transcription | Translation + Proofreading
                 project_status: {String} -> Pending | in_progress | submitted | signed | completed | canceled
                                             pending - project submitted to OHT, but professional worker (translator/proofreader) did not start working yet
