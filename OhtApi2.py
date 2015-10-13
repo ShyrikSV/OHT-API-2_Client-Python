@@ -388,8 +388,9 @@ class OhtApi:
                   "source_language": source_lang,
                   "target_language": target_lang,
                   "sources": ",".join(sources),
-                  "translation": ",".join(translation)}
+                  "translations": ",".join(translation)}
         self._param_injection_helper(params, custom=custom, wordCount=word_count, notes=notes, expertise=expertise, callbackUrl=callback_url, name=name)
+        print(requests.post(api, params=params).url)
         return self.json_to_ntuple(requests.post(api, params=params).text)
 
     def create_transcription_project(self, source_lang, sources, length=0, notes="", callback_url="", custom=None, name=""):
@@ -570,7 +571,7 @@ class OhtApi:
         if(remarks):
             params["remarks"] = remarks
 
-        return self.json_to_ntuple(requests.post(api, params=params).text)
+        return self.json_to_ntuple(requests.get(api, params=params).text)
 
     def machine_translate(self, from_lang, to_lang, text):
         """
