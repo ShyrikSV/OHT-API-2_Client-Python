@@ -122,6 +122,23 @@ class Test_OHTRequestsSimple(Test_Answers):
 
 class Test_OHTRequestsProject(Test_Answers):
 
+    def get_fake_translated_resource(self):
+        try:
+            uuid = holder.trunslated_resource
+        except:
+            holder.content_translated = "Le soleil brille de mille feux"
+            holder.resource_name_translated = "test_some_name"
+
+            answer = self.obj.create_file_resource(file_name=holder.resource_name_translated, file_content=holder.content_translated)
+            self.validateAnswer(answer)
+            self.assertTrue(len(answer.results) != 0)
+
+            holder.trunslated_resource = answer.results
+            uuid = holder.trunslated_resource
+
+        return uuid
+
+
     def get_file_resource(self):
         try:
             uuid = holder.currentResource
@@ -258,7 +275,8 @@ class Test_OHTRequestsProject(Test_Answers):
         language_source = "en-us"
         language_target = "fr-fr"
         name = "unittest proof_translated " + datetime.datetime.now().strftime(self.time_format())
-        translations_uuid_list = holder.translations
+        # translations_uuid_list = holder.translations
+        translations_uuid_list = self.get_fake_translated_resource()
         self.assertTrue(translations_uuid_list, msg="No translations uuid yet")
         self.assertTrue(type(translations_uuid_list) == type([]))
         self.assertTrue(len(translations_uuid_list) > 0)
