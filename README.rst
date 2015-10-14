@@ -11,14 +11,14 @@ One Hour Translation™ provides translation, proofreading and transcription ser
 Dependencies
 ------------
 
-requests `here <https://github.com/kennethreitz/requests>`_ >= 2.7.0 (lower hasn't tested)
+requests `here <https://github.com/kennethreitz/requests>`_ >= 2.7.0 
 
 Structure
 ---------
 
 File structure::
 
-  OhtApi2.py/ - contain class implement OHT API
+  OhtApi2.py/ - contain OHT API implementation class
   test/
     test_oht.py/ - unit tests for OhtApi class
    
@@ -27,7 +27,8 @@ For testing used `Travic-CI <https://travis-ci.org/>`_
 Some words about testing:
 	* Tests save some state information (we know it's not quite right, but creating new projects on OHT server for each test is not quite right as well)
 	* There is no mock, because we need to check real answer from server - this class is a part of system, and when server API will be change (if ever) tests will show it.
-   
+	* Private and public keys pass as environment variables - if you fork pass your own keys please.
+	
 Starters' Guide
 ---------------
 
@@ -53,9 +54,9 @@ Almost each method of **OhtApi** class return namedtuple (with type *oht_respons
 
 **errors** - list of errors
 
-For more details see doc comment for each method.
+For more details see doc comments for each method.
 
-The API Library must be instantiated and configured before calling any API method:
+The API Library must be configured before calling any API method:
 
 .. code-block:: python
 
@@ -65,7 +66,7 @@ The API Library must be instantiated and configured before calling any API metho
 	oht_response(status=oht_response(code=0, msg='ok'), errors=[], results=oht_response(account_username='YOU_ACCOUNT_NAME', credits='98610.5200', role='customer', account_id='YOUR_ID'))
 	...
 
-**OhtApi** class has build-in URLs for product and sandbox API or you can change when if need. Whenever instance is created or URL is change, it try to check URL availability.
+**OhtApi** class has build-in URLs for product and sandbox API or you can change them if need. Whenever instance is created or URL is change, it try to check URL availability.
 	
 Where to go from here
 ---------------------
