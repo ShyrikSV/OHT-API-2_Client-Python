@@ -31,6 +31,9 @@ class OhtApi:
                 }
 
     def __init__(self, public_key, private_key, sandbox=False, time_out=10):
+        """
+        time_out param use only for check URL availability
+        """
         self.__askTimeOut = time_out
         self.__publicKey = public_key
         self.__privateKey = private_key
@@ -358,13 +361,13 @@ class OhtApi:
         self._param_injection_helper(params, custom=custom, wordCount=word_count, notes=notes, expertise=expertise, callbackUrl=callback_url, name=name)
         return self.json_to_ntuple(requests.post(api, params=params).text)
 
-    def create_proof_translated_project(self, source_lang, target_lang, sources, translation, word_count=0, notes="", expertise="", callback_url="", custom=None, name=""):
+    def create_proof_translated_project(self, source_lang, target_lang, sources, translations, word_count=0, notes="", expertise="", callback_url="", custom=None, name=""):
         """
         Create new proofreading project, Providing source and translation
         :param source_lang: {String} -> language codes, see https://www.onehourtranslation.com/translation/api-documentation-v2/language-codes
         :param target_lang: {String} -> language codes, see https://www.onehourtranslation.com/translation/api-documentation-v2/language-codes
         :param sources: {List} -> list of Resource UUIDs
-        :param translation: {List} -> list of Resource UUIDs
+        :param translations: {List} -> list of Resource UUIDs
         :param word_count: {Integer} -> (optional) If empty use automatic counting
         :param notes: {String} -> (optional) Text note that will be shown to translator regarding the newly project
         :param expertise: {String} -> (optional) see https://www.onehourtranslation.com/translation/api-documentation-v2/expertise-codes
@@ -388,7 +391,7 @@ class OhtApi:
                   "source_language": source_lang,
                   "target_language": target_lang,
                   "sources": ",".join(sources),
-                  "translations": ",".join(translation)}
+                  "translations": ",".join(translations)}
         self._param_injection_helper(params, custom=custom, wordCount=word_count, notes=notes, expertise=expertise, callbackUrl=callback_url, name=name)
         print(requests.post(api, params=params).url)
         return self.json_to_ntuple(requests.post(api, params=params).text)

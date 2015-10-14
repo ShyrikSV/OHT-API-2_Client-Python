@@ -127,7 +127,7 @@ class Test_OHTRequestsProject(Test_Answers):
             uuid = holder.trunslated_resource
         except:
             holder.content_translated = "Le soleil brille de mille feux"
-            holder.resource_name_translated = "test_some_name"
+            holder.resource_name_translated = "test_some_name_tr"
 
             answer = self.obj.create_file_resource(file_name=holder.resource_name_translated, file_content=holder.content_translated)
             self.validateAnswer(answer)
@@ -202,7 +202,6 @@ class Test_OHTRequestsProject(Test_Answers):
     def get_translation_project_id(self):
         """ expertise parameter is optional, but under sandbox it's required """
 
-        # return 807896
         try:
             project_id = holder.translation_project_id
         except:
@@ -270,7 +269,9 @@ class Test_OHTRequestsProject(Test_Answers):
         self.assertTrue(answer.results.project_id != 0)
 
     def test_wait_create_proof_translated_project(self):
-        """ expertise parameter is optional, but under sandbox it's required """
+        """ expertise parameter is optional, but under sandbox it's required
+            for translations parameter used fake uuid (but with correct translation)
+        """
         source_uuid_list = self.get_file_resource()[:1][0]
         language_source = "en-us"
         language_target = "fr-fr"
