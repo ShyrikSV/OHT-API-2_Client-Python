@@ -27,7 +27,7 @@ For testing used `Travic-CI <https://travis-ci.org/>`_
 Some words about testing:
 	* Tests save some state information (we know it's not quite right, but creating new projects on OHT server for each test is not quite right as well)
 	* There is no mock, because we need to check real answer from server - this class is a part of system, and when server API will be change (if ever) tests will show it.
-	* Private and public keys pass as environment variables - if you fork pass your own keys please.
+	* Private and public keys pass as environment variables ('PubKey' and 'PrivKey') - if you fork pass your own keys please.
 	
 Starters' Guide
 ---------------
