@@ -574,7 +574,7 @@ class OhtApi:
         if(remarks):
             params["remarks"] = remarks
 
-        return self.json_to_ntuple(requests.get(api, params=params).text)
+        return self.json_to_ntuple(requests.post(api, params=params).text)
 
     def machine_translate(self, from_lang, to_lang, text):
         """
